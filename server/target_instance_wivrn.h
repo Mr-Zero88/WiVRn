@@ -35,6 +35,8 @@ class instance : public xrt_instance
 
 	xrt_result_t get_prober(xrt_prober **);
 
+	xrt_result_t create_app_instance(struct xrt_app_instance **);
+	
 	wivrn_session * session = nullptr;
 	ipc_server * server = nullptr;
 

@@ -25,6 +25,7 @@
 #include "xrt/xrt_system.h"
 
 #include "b_system.h"
+#include "b_app_policy.h"
 
 #include <assert.h>
 
@@ -76,11 +77,30 @@ xrt_result_t instance::get_prober(struct xrt_prober ** out_xp)
 	return XRT_ERROR_PROBER_NOT_SUPPORTED;
 }
 
+xrt_result_t instance::create_app_instance(struct xrt_app_instance **out_xainst)
+{
+	assert(out_xainst != NULL);
+	assert(*out_xainst == NULL);
+
+	struct b_app_instance *bainst = b_app_instance_create();
+	if (bainst == NULL) {
+		return XRT_ERROR_ALLOCATION;
+	}
+
+	*out_xainst = &bainst->base;
+
+	// @note: We don't keep track of it internally, instead relying on external things to properly destroy their
+	//        app instances before calling xrt_instance_destroy.
+
+	return XRT_SUCCESS;
+}
+
 instance::instance() :
         xrt_instance{
                 .is_system_available = method_pointer<&instance::is_system_available>,
                 .create_system = method_pointer<&instance::create_system>,
                 .get_prober = method_pointer<&instance::get_prober>,
+				.create_app_instance = method_pointer<&instance::create_app_instance>,
                 .destroy = [](xrt_instance * ptr) { wivrn::trace::shutdown(); delete (instance *)ptr; },
                 .startup_timestamp = os_monotonic_get_ns(),
         }
