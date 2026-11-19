@@ -1,4 +1,4 @@
-From af026866fe14d024c77246dffaf06b579f36865d Mon Sep 17 00:00:00 2001
+From e53a02223f2989aaa84470005b6e7349c76c2f29 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Wed, 26 Aug 2026 06:17:10 -0500
 Subject: [PATCH 10/11] d/steamvr_lh: Add LH_MAX_EXTRAPOLATION_MS
@@ -9,7 +9,7 @@ Signed-off-by: Sapphire <imsapphire0@gmail.com>
  1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/src/xrt/drivers/steamvr_lh/device.cpp b/src/xrt/drivers/steamvr_lh/device.cpp
-index 7da41eea1..a1d477b03 100644
+index 89cb8f9d8..c466808c7 100644
 --- a/src/xrt/drivers/steamvr_lh/device.cpp
 +++ b/src/xrt/drivers/steamvr_lh/device.cpp
 @@ -55,6 +55,7 @@
@@ -20,7 +20,7 @@ index 7da41eea1..a1d477b03 100644
  
  // Each device will have its own input class.
  struct InputClass
-@@ -802,7 +803,17 @@ ControllerDevice::get_hand_tracking(enum xrt_input_name name,
+@@ -939,7 +940,17 @@ ControllerDevice::get_hand_tracking(enum xrt_input_name name,
  void
  Device::get_pose(uint64_t at_timestamp_ns, xrt_space_relation *out_relation)
  {

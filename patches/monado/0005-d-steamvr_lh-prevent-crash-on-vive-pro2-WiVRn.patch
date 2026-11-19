@@ -1,4 +1,4 @@
-From 1d2120efe5235f78e2548ac755871bdabe69e266 Mon Sep 17 00:00:00 2001
+From 0943812a08495cd2f411a57a4cce3f5d4d976a69 Mon Sep 17 00:00:00 2001
 From: no name <git-am@invalid>
 Date: Sun, 28 Sep 2025 11:33:10 +0200
 Subject: [PATCH 05/11] d/steamvr_lh: prevent crash on vive pro2/WiVRn
@@ -8,17 +8,17 @@ Subject: [PATCH 05/11] d/steamvr_lh: prevent crash on vive pro2/WiVRn
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/xrt/drivers/steamvr_lh/steamvr_lh.cpp b/src/xrt/drivers/steamvr_lh/steamvr_lh.cpp
-index a706a575f..2187428b8 100644
+index 2b0c82e5a..fa241ddaf 100644
 --- a/src/xrt/drivers/steamvr_lh/steamvr_lh.cpp
 +++ b/src/xrt/drivers/steamvr_lh/steamvr_lh.cpp
-@@ -1076,7 +1076,7 @@ steamvr_lh_create_devices(struct xrt_prober *xp, struct xrt_system_devices *xsys
+@@ -1245,7 +1245,7 @@ steamvr_lh_create_devices(struct xrt_prober *xp, struct xrt_system_devices *xsys
  
- 	// Include the HMD
- 	if (ctx->hmd) {
--		if (ctx->hmd->variant == VIVE_VARIANT_PRO2 && !ctx->hmd->init_vive_pro_2(xp)) {
-+		if (xp && ctx->hmd->variant == VIVE_VARIANT_PRO2 && !ctx->hmd->init_vive_pro_2(xp)) {
- 			U_LOG_IFL_W(level, "Found Vive Pro 2, but failed to initialize.");
- 		}
+ 		// Include the HMD
+ 		if (ctx->hmd) {
+-			if (ctx->hmd->variant == VIVE_VARIANT_PRO2 && !ctx->hmd->init_vive_pro_2(xp)) {
++			if (xp && ctx->hmd->variant == VIVE_VARIANT_PRO2 && !ctx->hmd->init_vive_pro_2(xp)) {
+ 				U_LOG_IFL_W(level, "Found Vive Pro 2, but failed to initialize.");
+ 			}
  #ifdef XRT_BUILD_DRIVER_PIMAX_P2
 -- 
 2.56.1
