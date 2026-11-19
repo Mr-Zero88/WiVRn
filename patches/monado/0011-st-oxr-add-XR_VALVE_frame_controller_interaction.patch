@@ -1,4 +1,4 @@
-From fc8462fe74981c00f81af43f08c8c361c89634ea Mon Sep 17 00:00:00 2001
+From e76346f2a914d2c45daf51bad246bafd91f1d9ab Mon Sep 17 00:00:00 2001
 From: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
 Date: Fri, 18 Sep 2026 14:59:50 +0900
 Subject: [PATCH 11/11] st/oxr: add XR_VALVE_frame_controller_interaction
@@ -17,10 +17,10 @@ Signed-off-by: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
  create mode 100644 src/external/openxr_includes/openxr/XR_VALVE_frame_controller_interaction.h
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 7f35c711d..f24211755 100644
+index e327f2efd..65a528e81 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -444,6 +444,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
+@@ -443,6 +443,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_COSMOS "Enable XR_HTC_vive_cosmos_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_FOCUS3 "Enable XR_HTC_vive_focus3_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_FB_PROXIMITY "Enable XR_FB_touch_controller_proximity" ON)
@@ -37,17 +37,17 @@ index 7f35c711d..f24211755 100644
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK:            ${XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_ML2:                        ${XRT_FEATURE_OPENXR_INTERACTION_ML2}")
 diff --git a/cmake/MonadoSetOptions.cmake b/cmake/MonadoSetOptions.cmake
-index 8f7fa6f85..a53089d7a 100644
+index 5b5bf7d61..2f5cbd908 100644
 --- a/cmake/MonadoSetOptions.cmake
 +++ b/cmake/MonadoSetOptions.cmake
-@@ -134,6 +134,7 @@ function(monado_set_options)
+@@ -140,6 +140,7 @@ function(monado_set_options)
  		XRT_FEATURE_OPENXR_INTERACTION_EXT_HAND
  		XRT_FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE
  		XRT_FEATURE_OPENXR_INTERACTION_FB_PROXIMITY
 +		XRT_FEATURE_OPENXR_INTERACTION_FRAME
  		XRT_FEATURE_OPENXR_INTERACTION_KHR_GENERIC
+ 		XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK
  		XRT_FEATURE_OPENXR_INTERACTION_ML2
- 		XRT_FEATURE_OPENXR_INTERACTION_MNDX
 diff --git a/src/external/openxr_includes/openxr/XR_VALVE_frame_controller_interaction.h b/src/external/openxr_includes/openxr/XR_VALVE_frame_controller_interaction.h
 new file mode 100644
 index 000000000..d67826910
@@ -81,10 +81,10 @@ index 000000000..d67826910
 +#endif
 \ No newline at end of file
 diff --git a/src/xrt/auxiliary/bindings/bindings.json b/src/xrt/auxiliary/bindings/bindings.json
-index 462ffbf43..dbb0129a3 100644
+index ab87c83d7..c0d0aabe3 100644
 --- a/src/xrt/auxiliary/bindings/bindings.json
 +++ b/src/xrt/auxiliary/bindings/bindings.json
-@@ -3258,6 +3258,263 @@
+@@ -3256,6 +3256,263 @@
  			}
  		},
  
@@ -349,10 +349,10 @@ index 462ffbf43..dbb0129a3 100644
  			"title": "Meta Quest Touch Pro Controller",
  			"type": "tracked_controller",
 diff --git a/src/xrt/include/xrt/xrt_config_build.h.cmake_in b/src/xrt/include/xrt/xrt_config_build.h.cmake_in
-index 873b15b0a..81c547b90 100644
+index a87e82e88..195939b4d 100644
 --- a/src/xrt/include/xrt/xrt_config_build.h.cmake_in
 +++ b/src/xrt/include/xrt/xrt_config_build.h.cmake_in
-@@ -75,6 +75,7 @@
+@@ -76,6 +76,7 @@
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_EXT_HAND
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_FB_PROXIMITY
@@ -361,10 +361,10 @@ index 873b15b0a..81c547b90 100644
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_ML2
 diff --git a/src/xrt/include/xrt/xrt_defines.h b/src/xrt/include/xrt/xrt_defines.h
-index a175443cd..b1fd61853 100644
+index ab3f835a3..9e9d32b6d 100644
 --- a/src/xrt/include/xrt/xrt_defines.h
 +++ b/src/xrt/include/xrt/xrt_defines.h
-@@ -832,6 +832,9 @@ enum xrt_device_name
+@@ -833,6 +833,9 @@ enum xrt_device_name
  	XRT_DEVICE_TOUCH_CONTROLLER_QUEST_1_RIFT_S,
  	XRT_DEVICE_TOUCH_CONTROLLER_QUEST_2,
  
@@ -374,7 +374,7 @@ index a175443cd..b1fd61853 100644
  	// XR_KHR_generic_controller
  	XRT_DEVICE_GENERIC_CONTROLLER,
  
-@@ -1445,6 +1448,48 @@ enum xrt_input_name
+@@ -1446,6 +1449,48 @@ enum xrt_input_name
  	XRT_INPUT_MAGNETRA2_GRIP_POSE                               = XRT_INPUT_NAME(0X150B, POSE),
  	XRT_INPUT_MAGNETRA2_AIM_POSE                                = XRT_INPUT_NAME(0X150C, POSE),
  
@@ -423,7 +423,7 @@ index a175443cd..b1fd61853 100644
  	// clang-format on
  };
  
-@@ -1686,6 +1731,9 @@ enum xrt_output_name
+@@ -1687,6 +1732,9 @@ enum xrt_output_name
  
  	XRT_OUTPUT_NAME_CONTACTGLOVE2_HAPTIC                        = XRT_OUTPUT_NAME(0x0C00, VIBRATION),
  
@@ -443,10 +443,10 @@ index e92948fb8..78f73a26c 100644
  #include "openxr/XR_MND_contactglove2_interaction.h"
 +#include "openxr/XR_VALVE_frame_controller_interaction.h"
 diff --git a/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py b/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
-index e9be594f9..12b54fec4 100644
+index fa26afab5..2ab8f41f0 100644
 --- a/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
 +++ b/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
-@@ -116,6 +116,7 @@ EXTENSIONS = (
+@@ -118,6 +118,7 @@ EXTENSIONS = (
      ['XR_MSFT_unbounded_reference_space', 'XRT_FEATURE_OPENXR_SPACE_UNBOUNDED'],
      ['XR_OPPO_controller_interaction', 'XRT_FEATURE_OPENXR_INTERACTION_OPPO'],
      ['XR_VARJO_quad_views', 'XRT_FEATURE_OPENXR_VARJO_QUAD_VIEWS'],
@@ -455,5 +455,5 @@ index e9be594f9..12b54fec4 100644
      ['XR_EXTX_overlay', 'XRT_FEATURE_OPENXR_OVERLAY'],
      ['XR_HTCX_vive_tracker_interaction', 'ALWAYS_DISABLED'],
 -- 
-2.56.0
+2.56.1
 

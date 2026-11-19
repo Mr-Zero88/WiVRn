@@ -1,4 +1,4 @@
-From 6494d56f77863069f4d2a453e5888e808e77c4e1 Mon Sep 17 00:00:00 2001
+From 647f2cf66d7542614417870302a15b8514390250 Mon Sep 17 00:00:00 2001
 From: Patrick Nicolas <patricknicolas@laposte.net>
 Date: Sat, 15 Mar 2025 22:19:48 +0100
 Subject: [PATCH 04/11] st/oxr: forward 0 refresh rate
@@ -9,7 +9,7 @@ Subject: [PATCH 04/11] st/oxr: forward 0 refresh rate
  2 files changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/src/xrt/compositor/main/comp_compositor.c b/src/xrt/compositor/main/comp_compositor.c
-index a8fbd01d8..88e43be19 100644
+index a5fd49ae7..a5e26c9f7 100644
 --- a/src/xrt/compositor/main/comp_compositor.c
 +++ b/src/xrt/compositor/main/comp_compositor.c
 @@ -399,7 +399,7 @@ compositor_request_display_refresh_rate(struct xrt_compositor *xc, float display
@@ -22,10 +22,10 @@ index a8fbd01d8..88e43be19 100644
  		return result;
  	}
 diff --git a/src/xrt/state_trackers/oxr/oxr_api_session.c b/src/xrt/state_trackers/oxr/oxr_api_session.c
-index bd34ea43e..16d5aac32 100644
+index a29edcead..a856d5daa 100644
 --- a/src/xrt/state_trackers/oxr/oxr_api_session.c
 +++ b/src/xrt/state_trackers/oxr/oxr_api_session.c
-@@ -455,15 +455,11 @@ oxr_xrRequestDisplayRefreshRateFB(XrSession session, float displayRefreshRate)
+@@ -462,15 +462,11 @@ oxr_xrRequestDisplayRefreshRateFB(XrSession session, float displayRefreshRate)
  	OXR_VERIFY_SESSION_AND_INIT_LOG(&log, session, sess, "xrRequestDisplayRefreshRateFB");
  	OXR_VERIFY_SESSION_NOT_LOST(&log, sess);
  
@@ -43,5 +43,5 @@ index bd34ea43e..16d5aac32 100644
  		if ((int)(displayRefreshRate * 100.0f) == (int)(sess->sys->xsysc->info.refresh_rates_hz[i] * 100.0f)) {
  			found = true;
 -- 
-2.56.0
+2.56.1
 
