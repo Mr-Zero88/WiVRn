@@ -257,6 +257,7 @@ if (WIVRN_BUILD_SERVER)
 			comp_multi
 			comp_util
 			ipc_server
+			target_ipc_defaults
 			target_helpers
 			xrt-external-openxr
 			xrt-interfaces

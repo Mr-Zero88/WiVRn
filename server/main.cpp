@@ -38,6 +38,7 @@
 #include "protocol_version.h"
 #include "start_application.h"
 #include "start_systemd_unit.h"
+#include "target_ipc_defaults.h"
 #include "utils/overloaded.h"
 #include "version.h"
 #include "wivrn_config.h"
