@@ -1,4 +1,4 @@
-From a7ce6cbf36d11eb132eccb846d65ec137a12b605 Mon Sep 17 00:00:00 2001
+From b2ce2f9d5d21528d43936d10065e0250fc3bfd24 Mon Sep 17 00:00:00 2001
 From: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
 Date: Fri, 18 Sep 2026 14:59:50 +0900
 Subject: [PATCH 11/11] st/oxr: add XR_VALVE_frame_controller_interaction
@@ -17,10 +17,10 @@ Signed-off-by: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
  create mode 100644 src/external/openxr_includes/openxr/XR_VALVE_frame_controller_interaction.h
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 0abb1afb2..9a20ad3d0 100644
+index 6a1a0d9de..a53517858 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -445,6 +445,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
+@@ -446,6 +446,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_COSMOS "Enable XR_HTC_vive_cosmos_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_FOCUS3 "Enable XR_HTC_vive_focus3_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_FB_PROXIMITY "Enable XR_FB_touch_controller_proximity" ON)
@@ -28,7 +28,7 @@ index 0abb1afb2..9a20ad3d0 100644
  option(XRT_FEATURE_OPENXR_INTERACTION_TOUCH_PRO "Enable XR_FB_touch_controller_pro" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_TOUCH_PLUS "Enable XR_META_touch_controller_plus" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK "Enable XR_LOGITECH_mx_ink_stylus_interaction" OFF)
-@@ -710,6 +711,7 @@ if(XRT_MODULE_OPENXR_STATE_TRACKER)
+@@ -712,6 +713,7 @@ if(XRT_MODULE_OPENXR_STATE_TRACKER)
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_EYE_GAZE:               ${XRT_FEATURE_OPENXR_INTERACTION_EXT_EYE_GAZE}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_HAND:                   ${XRT_FEATURE_OPENXR_INTERACTION_EXT_HAND}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE:              ${XRT_FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE}")
@@ -37,7 +37,7 @@ index 0abb1afb2..9a20ad3d0 100644
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK:            ${XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_ML2:                        ${XRT_FEATURE_OPENXR_INTERACTION_ML2}")
 diff --git a/cmake/MonadoSetOptions.cmake b/cmake/MonadoSetOptions.cmake
-index 5b5bf7d61..2f5cbd908 100644
+index d417becd9..325b88efe 100644
 --- a/cmake/MonadoSetOptions.cmake
 +++ b/cmake/MonadoSetOptions.cmake
 @@ -140,6 +140,7 @@ function(monado_set_options)
@@ -349,7 +349,7 @@ index 898a89b16..62d909384 100644
  			"title": "Meta Quest Touch Pro Controller",
  			"type": "tracked_controller",
 diff --git a/src/xrt/include/xrt/xrt_config_build.h.cmake_in b/src/xrt/include/xrt/xrt_config_build.h.cmake_in
-index c05b71d33..8bed26846 100644
+index af6b1183e..de1b8eeb6 100644
 --- a/src/xrt/include/xrt/xrt_config_build.h.cmake_in
 +++ b/src/xrt/include/xrt/xrt_config_build.h.cmake_in
 @@ -77,6 +77,7 @@
@@ -434,16 +434,16 @@ index d0f4d285f..3249b350f 100644
  	// Make sure to add a trailing comma to any new entries.
  };
 diff --git a/src/xrt/include/xrt/xrt_openxr_includes.h b/src/xrt/include/xrt/xrt_openxr_includes.h
-index e92948fb8..78f73a26c 100644
+index a1b73d018..0f319d6b2 100644
 --- a/src/xrt/include/xrt/xrt_openxr_includes.h
 +++ b/src/xrt/include/xrt/xrt_openxr_includes.h
-@@ -75,3 +75,4 @@ typedef __eglMustCastToProperFunctionPointerType (*PFNEGLGETPROCADDRESSPROC)(con
+@@ -76,3 +76,4 @@ typedef __eglMustCastToProperFunctionPointerType (*PFNEGLGETPROCADDRESSPROC)(con
  #include "openxr/XR_MNDX_flipvr.h"
  #include "openxr/XR_MND_query_egl_device.h"
  #include "openxr/XR_MND_contactglove2_interaction.h"
 +#include "openxr/XR_VALVE_frame_controller_interaction.h"
 diff --git a/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py b/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
-index fa26afab5..2ab8f41f0 100644
+index a774af4df..e4b0c6323 100644
 --- a/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
 +++ b/src/xrt/state_trackers/oxr/extension_support/oxr_extension_support.py
 @@ -118,6 +118,7 @@ EXTENSIONS = (

@@ -1,4 +1,4 @@
-From 00476fe84d163516836e4eb4d44db872afe5b801 Mon Sep 17 00:00:00 2001
+From 790545d9c7abb17db43885611342da17f239e2e1 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Wed, 26 Aug 2026 06:14:13 -0500
 Subject: [PATCH 09/11] a/math: Add m_relation_history_get_clamped
@@ -11,7 +11,7 @@ Signed-off-by: Sapphire <imsapphire0@gmail.com>
  3 files changed, 77 insertions(+), 6 deletions(-)
 
 diff --git a/src/xrt/auxiliary/math/m_relation_history.cpp b/src/xrt/auxiliary/math/m_relation_history.cpp
-index 0ee3ed47e..8f6dbd274 100644
+index 1bc7ffd39..724003a26 100644
 --- a/src/xrt/auxiliary/math/m_relation_history.cpp
 +++ b/src/xrt/auxiliary/math/m_relation_history.cpp
 @@ -78,7 +78,11 @@ try {
@@ -28,7 +28,7 @@ index 0ee3ed47e..8f6dbd274 100644
  	XRT_TRACE_MARKER();
  
 diff --git a/src/xrt/auxiliary/math/m_relation_history.h b/src/xrt/auxiliary/math/m_relation_history.h
-index 12ac153d6..4dc6b6a86 100644
+index e05d0bd1e..6f614f855 100644
 --- a/src/xrt/auxiliary/math/m_relation_history.h
 +++ b/src/xrt/auxiliary/math/m_relation_history.h
 @@ -97,12 +97,33 @@ m_relation_history_push_with_motion_estimation(struct m_relation_history *rh,
@@ -67,7 +67,7 @@ index 12ac153d6..4dc6b6a86 100644
  /*!
   * Get the latest report in the buffer, if any.
 diff --git a/src/xrt/auxiliary/math/m_relation_history.hpp b/src/xrt/auxiliary/math/m_relation_history.hpp
-index 31b023c91..7fbc4928d 100644
+index 4fa6fb287..8382b0a3a 100644
 --- a/src/xrt/auxiliary/math/m_relation_history.hpp
 +++ b/src/xrt/auxiliary/math/m_relation_history.hpp
 @@ -228,10 +228,13 @@ public: // Methods (thread-unsafe)
@@ -135,7 +135,7 @@ index 31b023c91..7fbc4928d 100644
  			return M_RELATION_HISTORY_RESULT_REVERSE_PREDICTED;
  		}
  		U_LOG_T("Interpolating within buffer!");
-@@ -283,11 +302,26 @@ public: // Methods (thread-unsafe)
+@@ -283,6 +302,10 @@ public: // Methods (thread-unsafe)
  		const auto &predecessor = *(it - 1);
  		const auto &successor = *it;
  
@@ -146,6 +146,8 @@ index 31b023c91..7fbc4928d 100644
  		// Do the thing.
  		out_entry = predecessor.interpolate(timestamp_ns, successor);
  		return M_RELATION_HISTORY_RESULT_INTERPOLATED;
+@@ -359,6 +382,17 @@ public: // Methods (thread-unsafe)
+ 		return best;
  	}
  
 +	/*!
@@ -162,9 +164,9 @@ index 31b023c91..7fbc4928d 100644
  public: // Methods (thread-safe)
  	/*!
  	 * @copydoc pushOrUpdateLocked
-@@ -367,6 +401,18 @@ public: // Methods (thread-safe)
+@@ -462,6 +496,18 @@ public: // Methods (thread-safe)
  		std::unique_lock<os::Mutex> lock(this->mutex);
- 		return this->getLocked(timestamp_ns, out_entry);
+ 		return this->getNearestLocked(timestamp_ns, max_slop_ns);
  	}
 +
 +	/*!

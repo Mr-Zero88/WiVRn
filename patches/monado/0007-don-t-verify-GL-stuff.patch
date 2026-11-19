@@ -1,4 +1,4 @@
-From b8e35424c6420b6c5681a3e67d82681ab45cad6b Mon Sep 17 00:00:00 2001
+From 4d99ff17e69e456deb133fab6e12e34e1cb5a8aa Mon Sep 17 00:00:00 2001
 From: no name <git-am@invalid>
 Date: Sun, 25 Jan 2026 10:09:10 +0100
 Subject: [PATCH 07/11] don't verify GL stuff
