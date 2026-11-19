@@ -1,4 +1,4 @@
-From 2d6e63e1494d7bd42c6dcdf7badf80bd017db77a Mon Sep 17 00:00:00 2001
+From 3747a5bc5cedab8592def7a75a9898a0c74a228d Mon Sep 17 00:00:00 2001
 From: Patrick Nicolas <patricknicolas@laposte.net>
 Date: Tue, 8 Oct 2024 22:13:15 +0200
 Subject: [PATCH 02/11] Use extern socket fd
@@ -8,7 +8,7 @@ Subject: [PATCH 02/11] Use extern socket fd
  1 file changed, 8 insertions(+)
 
 diff --git a/src/xrt/ipc/server/ipc_server_mainloop_linux.c b/src/xrt/ipc/server/ipc_server_mainloop_linux.c
-index a0bef3dde..453dd38ca 100644
+index c836a1ca0..8628f98a8 100644
 --- a/src/xrt/ipc/server/ipc_server_mainloop_linux.c
 +++ b/src/xrt/ipc/server/ipc_server_mainloop_linux.c
 @@ -50,6 +50,8 @@

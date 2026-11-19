@@ -1,4 +1,4 @@
-From 09b46296e9c30051bd887d44fc1c4935dea107d8 Mon Sep 17 00:00:00 2001
+From 5f0331cd99b4a88bed2f756647bde42f78b32756 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Fri, 7 Nov 2025 20:41:16 -0600
 Subject: [PATCH 06/11] st/oxr: push XrEventDataInteractionProfileChanged when
@@ -9,10 +9,10 @@ Subject: [PATCH 06/11] st/oxr: push XrEventDataInteractionProfileChanged when
  1 file changed, 3 deletions(-)
 
 diff --git a/src/xrt/state_trackers/oxr/actions/oxr_input.c b/src/xrt/state_trackers/oxr/actions/oxr_input.c
-index 194ae3177..c139f9b3f 100644
+index 6b4ab744c..f285bd30b 100644
 --- a/src/xrt/state_trackers/oxr/actions/oxr_input.c
 +++ b/src/xrt/state_trackers/oxr/actions/oxr_input.c
-@@ -1380,9 +1380,6 @@ session_update_action_bindings(struct oxr_logger *log,
+@@ -1383,9 +1383,6 @@ session_update_action_bindings(struct oxr_logger *log,
  #define POPULATE_PROFILE(X)                                                                                            \
  	do {                                                                                                           \
  		XrPath path = profiles.X.profile != NULL ? profiles.X.profile->path : XR_NULL_PATH;                    \
