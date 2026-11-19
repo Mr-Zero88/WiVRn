@@ -1,4 +1,4 @@
-From 495f9f90e374c71238b3bac677e616a17d751ba0 Mon Sep 17 00:00:00 2001
+From 14ab27adfa3bf97b4a4feb5e8b92263e63e905b7 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Wed, 26 Aug 2026 06:14:13 -0500
 Subject: [PATCH 09/11] a/math: Add m_relation_history_get_clamped

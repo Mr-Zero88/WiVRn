@@ -1,4 +1,4 @@
-From e76346f2a914d2c45daf51bad246bafd91f1d9ab Mon Sep 17 00:00:00 2001
+From ea22a44c1620a47faebe54283dde3904c04367c7 Mon Sep 17 00:00:00 2001
 From: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
 Date: Fri, 18 Sep 2026 14:59:50 +0900
 Subject: [PATCH 11/11] st/oxr: add XR_VALVE_frame_controller_interaction
@@ -17,10 +17,10 @@ Signed-off-by: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
  create mode 100644 src/external/openxr_includes/openxr/XR_VALVE_frame_controller_interaction.h
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index e327f2efd..65a528e81 100644
+index 5eab5e17d..be7273c3b 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -443,6 +443,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
+@@ -444,6 +444,7 @@ option(XRT_FEATURE_OPENXR_INTERACTION_CONTACTGLOVE2 "Enable XR_MND_contactglove2
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_COSMOS "Enable XR_HTC_vive_cosmos_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_VIVE_FOCUS3 "Enable XR_HTC_vive_focus3_controller_interaction" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_FB_PROXIMITY "Enable XR_FB_touch_controller_proximity" ON)
@@ -28,7 +28,7 @@ index e327f2efd..65a528e81 100644
  option(XRT_FEATURE_OPENXR_INTERACTION_TOUCH_PRO "Enable XR_FB_touch_controller_pro" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_TOUCH_PLUS "Enable XR_META_touch_controller_plus" ON)
  option(XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK "Enable XR_LOGITECH_mx_ink_stylus_interaction" OFF)
-@@ -707,6 +708,7 @@ if(XRT_MODULE_OPENXR_STATE_TRACKER)
+@@ -709,6 +710,7 @@ if(XRT_MODULE_OPENXR_STATE_TRACKER)
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_EYE_GAZE:               ${XRT_FEATURE_OPENXR_INTERACTION_EXT_EYE_GAZE}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_HAND:                   ${XRT_FEATURE_OPENXR_INTERACTION_EXT_HAND}")
  	message(STATUS "#    FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE:              ${XRT_FEATURE_OPENXR_INTERACTION_EXT_PALM_POSE}")
@@ -361,10 +361,10 @@ index a87e82e88..195939b4d 100644
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_ML2
 diff --git a/src/xrt/include/xrt/xrt_defines.h b/src/xrt/include/xrt/xrt_defines.h
-index ab3f835a3..9e9d32b6d 100644
+index ea276fc62..75ca28747 100644
 --- a/src/xrt/include/xrt/xrt_defines.h
 +++ b/src/xrt/include/xrt/xrt_defines.h
-@@ -833,6 +833,9 @@ enum xrt_device_name
+@@ -842,6 +842,9 @@ enum xrt_device_name
  	XRT_DEVICE_TOUCH_CONTROLLER_QUEST_1_RIFT_S,
  	XRT_DEVICE_TOUCH_CONTROLLER_QUEST_2,
  
@@ -374,7 +374,7 @@ index ab3f835a3..9e9d32b6d 100644
  	// XR_KHR_generic_controller
  	XRT_DEVICE_GENERIC_CONTROLLER,
  
-@@ -1446,6 +1449,48 @@ enum xrt_input_name
+@@ -1455,6 +1458,48 @@ enum xrt_input_name
  	XRT_INPUT_MAGNETRA2_GRIP_POSE                               = XRT_INPUT_NAME(0X150B, POSE),
  	XRT_INPUT_MAGNETRA2_AIM_POSE                                = XRT_INPUT_NAME(0X150C, POSE),
  
@@ -423,7 +423,7 @@ index ab3f835a3..9e9d32b6d 100644
  	// clang-format on
  };
  
-@@ -1687,6 +1732,9 @@ enum xrt_output_name
+@@ -1696,6 +1741,9 @@ enum xrt_output_name
  
  	XRT_OUTPUT_NAME_CONTACTGLOVE2_HAPTIC                        = XRT_OUTPUT_NAME(0x0C00, VIBRATION),
  

@@ -1,4 +1,4 @@
-From aeef1ba6154fb85241b436d1f7ea72ffde8c3438 Mon Sep 17 00:00:00 2001
+From 09b46296e9c30051bd887d44fc1c4935dea107d8 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Fri, 7 Nov 2025 20:41:16 -0600
 Subject: [PATCH 06/11] st/oxr: push XrEventDataInteractionProfileChanged when

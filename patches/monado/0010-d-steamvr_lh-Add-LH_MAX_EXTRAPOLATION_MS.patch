@@ -1,4 +1,4 @@
-From f79c126e5c0851889bff493c71c0e201437a7f23 Mon Sep 17 00:00:00 2001
+From ea826da44c38ad1a7e2f2b8369452ddd13ae1349 Mon Sep 17 00:00:00 2001
 From: Sapphire <imsapphire0@gmail.com>
 Date: Wed, 26 Aug 2026 06:17:10 -0500
 Subject: [PATCH 10/11] d/steamvr_lh: Add LH_MAX_EXTRAPOLATION_MS
@@ -9,7 +9,7 @@ Signed-off-by: Sapphire <imsapphire0@gmail.com>
  1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/src/xrt/drivers/steamvr_lh/device.cpp b/src/xrt/drivers/steamvr_lh/device.cpp
-index 81c110198..d2ee9b7ab 100644
+index d936e6b01..7f14a5903 100644
 --- a/src/xrt/drivers/steamvr_lh/device.cpp
 +++ b/src/xrt/drivers/steamvr_lh/device.cpp
 @@ -55,6 +55,7 @@
