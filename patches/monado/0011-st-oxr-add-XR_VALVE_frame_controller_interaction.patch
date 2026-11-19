@@ -1,4 +1,4 @@
-From 85d0c717b869cdde968204b7a4e653b9703d9b8f Mon Sep 17 00:00:00 2001
+From 76653c5309eb278969e128553fee98da4ec3ca2e Mon Sep 17 00:00:00 2001
 From: galister <85970-galister@users.noreply.gitlab.freedesktop.org>
 Date: Fri, 18 Sep 2026 14:59:50 +0900
 Subject: [PATCH 11/11] st/oxr: add XR_VALVE_frame_controller_interaction
@@ -361,7 +361,7 @@ index af6b1183e..de1b8eeb6 100644
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_LOGITECH_MX_INK
  #cmakedefine XRT_FEATURE_OPENXR_INTERACTION_ML2
 diff --git a/src/xrt/include/xrt/xrt_defines.h b/src/xrt/include/xrt/xrt_defines.h
-index d0f4d285f..3249b350f 100644
+index 52b2aee44..7772e7eed 100644
 --- a/src/xrt/include/xrt/xrt_defines.h
 +++ b/src/xrt/include/xrt/xrt_defines.h
 @@ -899,6 +899,9 @@ enum xrt_device_name
@@ -374,7 +374,7 @@ index d0f4d285f..3249b350f 100644
  	// XR_KHR_generic_controller
  	XRT_DEVICE_GENERIC_CONTROLLER,
  
-@@ -1512,6 +1515,48 @@ enum xrt_input_name
+@@ -1515,6 +1518,48 @@ enum xrt_input_name
  	XRT_INPUT_MAGNETRA2_GRIP_POSE                               = XRT_INPUT_NAME(0X150B, POSE),
  	XRT_INPUT_MAGNETRA2_AIM_POSE                                = XRT_INPUT_NAME(0X150C, POSE),
  
@@ -423,7 +423,7 @@ index d0f4d285f..3249b350f 100644
  	// clang-format on
  };
  
-@@ -1753,6 +1798,9 @@ enum xrt_output_name
+@@ -1756,6 +1801,9 @@ enum xrt_output_name
  
  	XRT_OUTPUT_NAME_CONTACTGLOVE2_HAPTIC                        = XRT_OUTPUT_NAME(0x0C00, VIBRATION),
  
