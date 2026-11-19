@@ -275,6 +275,8 @@ void start_server(configuration config)
 #endif
 		        },
 		        .no_stdin = true,
+				.socket_filename = XRT_IPC_MSG_SOCK_FILENAME,
+				.pid_filename = XRT_IPC_SERVICE_PID_FILENAME,
 		};
 
 		try
